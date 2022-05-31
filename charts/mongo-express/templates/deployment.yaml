@@ -5,10 +5,10 @@ metadata:
   labels:
     app: "{{ .Values.labels.app }}"
 spec:
-  replicas: "{{ .Values.replicaCount }}"
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: 
+      app: "{{ .Values.labels.app }}"
   template:
     metadata:
       labels:
@@ -18,7 +18,7 @@ spec:
       - name: "{{ .Values.name }}"
         image:  "{{ .Values.image.repository }}"
         ports:
-        - containerPort: "{{ .Values.service.port }}"
+        - containerPort: {{ .Values.service.port }}
         env:
         - name: ME_CONFIG_MONGODB_ADMINUSERNAME
           valueFrom:
